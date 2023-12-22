@@ -34,7 +34,7 @@ import java.util.Map;
 import java.util.Vector;
 
 /** FlutterBluetoothBasicPlugin */
-public class FlutterBluetoothBasicPlugin implements MethodCallHandler, RequestPermissionsResultListener {
+public class FlutterBluetoothBasicPlugin implements FlutterPlugin, MethodCallHandler, RequestPermissionsResultListener {
   private static final String TAG = "BluetoothBasicPlugin";
   private int id = 0;
   private ThreadPool threadPool;
@@ -54,7 +54,10 @@ public class FlutterBluetoothBasicPlugin implements MethodCallHandler, RequestPe
     final FlutterBluetoothBasicPlugin instance = new FlutterBluetoothBasicPlugin(registrar);
     registrar.addRequestPermissionsResultListener(instance);
   }
-
+  public static void onAttachedToEngine(Registrar registrar) {
+    final FlutterBluetoothBasicPlugin instance = new FlutterBluetoothBasicPlugin(registrar);
+    registrar.addRequestPermissionsResultListener(instance);
+  }
   FlutterBluetoothBasicPlugin(Registrar r){
     this.registrar = r;
     this.activity = r.activity();
