@@ -54,9 +54,15 @@ public class FlutterBluetoothBasicPlugin implements FlutterPlugin, MethodCallHan
     final FlutterBluetoothBasicPlugin instance = new FlutterBluetoothBasicPlugin(registrar);
     registrar.addRequestPermissionsResultListener(instance);
   }
-  public static void onAttachedToEngine(Registrar registrar) {
-    final FlutterBluetoothBasicPlugin instance = new FlutterBluetoothBasicPlugin(registrar);
+  @Override
+  public void onAttachedToEngine(@NonNull FlutterPluginBinding binding) {
+    final FlutterBluetoothBasicPlugin instance = new FlutterBluetoothBasicPlugin(binding);
     registrar.addRequestPermissionsResultListener(instance);
+  }
+
+  @Override
+  public void onDetachedFromEngine(@NonNull FlutterPluginBinding binding) {
+    // TODO: your plugin is no longer attached to a Flutter experience.
   }
   FlutterBluetoothBasicPlugin(Registrar r){
     this.registrar = r;
